@@ -2,25 +2,27 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Neon Landing — RoG3r by Pooyan</title>
-
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoG3r Neo V3.7 — Neon Landing</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body>
+
   <header>
     <div class="container wrap">
       <div class="brand">
         <span>🚀 RoG3r</span>
         <span class="badge">Neon Landing</span>
       </div>
-      <nav>
-        <ul>
+
+      <nav class="nav">
+        <ul class="nav-links">
           <li><a href="#features">مزایا</a></li>
           <li><a href="#gallery">نمونه‌ها</a></li>
           <li><a href="#contact">ارتباط</a></li>
         </ul>
+        <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
       </nav>
     </div>
   </header>
@@ -76,8 +78,8 @@
       <h2>تماس و شروع همکاری</h2>
       <form class="contact-form">
         <div class="row">
-          <input type="text" placeholder="نام شما" required />
-          <input type="email" placeholder="ایمیل یا شماره تماس" required />
+          <input type="text" placeholder="نام شما" required>
+          <input type="email" placeholder="ایمیل یا شماره تماس" required>
         </div>
         <textarea placeholder="توضیح پروژه یا سوال شما"></textarea>
         <button class="cta">ارسال درخواست</button>
@@ -90,5 +92,45 @@
       © 2025 RoG3r — طراحی توسط <b>پویان</b> ❤️
     </div>
   </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const icon = hamburger.querySelector('i');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-xmark');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
+      });
+    });
+
+    // ScrollSpy Highlight (اختیاری)
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 100;
+      sections.forEach(sec => {
+        if (fromTop >= sec.offsetTop && fromTop < sec.offsetTop + sec.offsetHeight) {
+          navItems.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sec.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+
